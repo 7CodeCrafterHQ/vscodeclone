@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+
+<body>
+  
+    <div id="popup">
+      <form action="/edit/:filename" method="post">
+        <input  id="poppen" type="text" name="updatefilename">
+        <input type="submit" >
+      </form>
+    </div>
+ 
+  <div id="main">
+    <div id="part1">
+      <div id="part1_up">
+        <i class="ri-file-line"></i>
+        <i class="ri-search-line"></i>
+        <i class="ri-git-branch-line"></i>
+        <i class="ri-google-play-line"></i>
+        <i class="ri-function-line"></i>
+        <i class="ri-tv-2-line"></i>
+        <i class="ri-share-forward-line"></i>
+        <i class="ri-github-fill"></i>
+        <i class="ri-edge-line"></i>
+      </div>
+      <div id="part1_down">
+        <i class="ri-account-circle-line"></i>
+        <i class="ri-settings-5-line"></i>
+      </div>
+    </div>
+    <div id="part2">
+      <div id="temp">
+        <h4>Explore</h4>
+        <i class="ri-more-fill"></i>
+      </div>
+      <div id="tempfiles">
+        <h5>vs_code</h5>
+        <div id="icons">
+          <i id="filecreate" class="ri-file-3-line"></i>
+          <i id="foldercreate" class="ri-folder-add-line"></i>
+          <a href="/"><i class="ri-refresh-line"></i></a>
+          <i class="ri-folders-line"></i>
+        </div>
+
+      </div>
+     
+      <div id="paramentfiles">
+        <form id="formfile" action="/formfile">
+          <input type="text" name="file" placeholder="filename">
+        </form>
+  
+        <form id="formfolder" action="/formfolder">
+          <input type="text" name="folder" placeholder="folder name">
+        </form>
+     <% data.forEach(function(file){ %>
+      <div id="files">
+        <a href="/fileshow/<%= file.name %>">
+          <% if(file.isDirectory()){  %>
+            <i class="ri-folder-line"></i>
+         <% } else { %>
+          <i class="ri-file-line"></i>
+          <% } %>
+          <%= file.name %>
+        </a>
+        <div id="icon">
+          <!-- <a href="/edit/<%= file.name %>" id="editpen"> <i class="ri-pencil-line"></i></a> -->
+          <i id="editpen" class="ri-pencil-line"></i>
+          <% if(file.isDirectory()){ %>
+            <a href="/folder/delete/<%= file.name %>"><i class="ri-delete-bin-line"></i></a>
+            <% } else { %>
+              <a href="/file/delete/<%= file.name %>"><i class="ri-delete-bin-line"></i></a>
+              <% } %>
+        </div>
+      </div>
+      <% }) %>
+       
+      </div>
+    </div>
+    <div id="part3"></div>
+  </div>
+  <script src="../javascripts/script.js"></script>
+</body>
+
+</html>
